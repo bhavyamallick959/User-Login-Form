@@ -1,1 +1,77 @@
-<p>registration works!</p>
+<div style="min-width: 100%;min-height: 200%; background-color: white;">
+<br>
+<div class="container" style="max-width: 600px; background-color: antiquewhite;">
+    <h2 class="textual">User Registration</h2>
+    <form class="form-horizontal" #registrationform="ngForm" (ngSubmit)="registrationUser()">
+        <small class="text-danger">{{msgs}}</small>
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="username">Username:</label>
+            <div class="col-sm-10">
+            <input 
+               type="text" 
+               class="form-control"
+               placeholder="Enter a name" 
+               name="username"
+               [(ngModel)]="user.userName"
+               #username="ngModel"
+               required>
+               <span class="help-block" *ngIf="!username.valid && username.touched" class="text-danger">Username is required field</span>
+          </div>
+        </div>
+        
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="email">Email:</label>
+          <div class="col-sm-10">
+            <input type="email" 
+            class="form-control"  
+            placeholder="Enter email" 
+            name="email"
+             [(ngModel)]="user.emailId"
+             required
+             email
+             #email="ngModel">
+             <span class="help-block" *ngIf="!email.valid && email.touched" class="text-danger">Please enter a valid email!</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="pwd">Password:</label>
+          <div class="col-sm-10">          
+            <input type="password" 
+            class="form-control"  
+            placeholder="Enter password" 
+            name="password"
+             [(ngModel)]="user.password"
+             required
+             #password="ngModel">
+             <span class="help-block" *ngIf="!password.valid && password.touched" class="text-danger">Password Required!</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="cpwd">Confirm Password:</label>
+            <div class="col-sm-10">          
+              <input type="password" 
+              class="form-control"  
+              placeholder="Enter Confirm password" 
+              name="cpassword"
+               (ngModel)="user.password"
+               required
+               #cpassword="ngModel">
+               <span class="help-block" *ngIf="!cpassword.valid && cpassword.touched" class="text-danger">Password and Confirm Password must be same</span>
+            </div>
+          </div>
+  
+  
+        <div class="form-group">        
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary" [disabled]="!registrationform.valid">Register</button>
+          </div>
+        </div>
+    
+      </form>
+      <h4 class="d-inline pull-right" [routerLink]="['/login']">Existing user ? Login here</h4>  
+</div>
+</div>
